@@ -1,0 +1,4 @@
+{
+    "mstrDataError" : { "code" : "mstrDataError", "message" : "Error al cargar usuario" },
+    "mstrDataSuccess" : { "code" : "mstrDataSuccess", "message" : "Usuarios cargados correctamente" }
+}
