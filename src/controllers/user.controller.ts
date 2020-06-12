@@ -10,13 +10,13 @@ export class UserController {
 
     @Post()
     async add(@Body() user: User) {
-        return await this._userS.add(user)
+        return await this._userS.add(user).then(resp => objectResponse(resp))
     }
 
     @Put('/:id')
     async edit(@Param('id') id: string, @Body() user: User) {
         user._id = id
-        return await this._userS.edit(user)
+        return await this._userS.edit(user).then(resp => objectResponse(resp))
     }
 
     @Get()

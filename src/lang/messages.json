@@ -1,4 +1,10 @@
 {
-    "mstrDataError" : { "code" : "mstrDataError", "message" : "Error al cargar usuario" },
-    "mstrDataSuccess" : { "code" : "mstrDataSuccess", "message" : "Usuarios cargados correctamente" }
+    "mstrDataSuccess" : { "code" : "mstrDataSuccess", "message" : "Datos cargados correctamente" },
+    "mstrDataError" : { "code" : "mstrDataError", "message" : "Error al cargar datos" },
+    "mstrSaveSuccess" : { "code" : "mstrSaveSuccess", "message" : "Guardado correctamente" },
+    "mstrSaveError" : { "code" : "mstrSaveError", "message" : "Error al guardar" },
+    "mstrUpdateSuccess" : { "code" : "mstrUpdateSuccess", "message" : "Modificado correctamente" },
+    "mstrUpdateError" : { "code" : "mstrUpdateError", "message" : "Error al modificar" },
+    "mstrDeleteSuccess" : { "code" : "mstrDeleteSuccess", "message" : "Eliminado correctamente" },
+    "mstrDeleteError" : { "code" : "mstrDeleteError", "message" : "Error al eliminar" }
 }
