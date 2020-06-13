@@ -80,4 +80,23 @@ export class UserService {
         })
         return promise
     }
+
+    async getById(id:string){
+           
+        try {
+            const user = await this.userModel.findById(id)
+            return user
+        } catch (error) {
+            return {message: error}
+        }
+    }
+    async remove(id:string){
+           
+        try {
+             await this.userModel.deleteOne({'_id': id})
+            return {message: `Usuario con el id ${id} eliminado correctamente`}
+        } catch (error) {
+            return {message: error}
+        }
+    }
 }

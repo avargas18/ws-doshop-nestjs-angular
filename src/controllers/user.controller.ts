@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Put, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Param, Delete } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { User } from '../schemas/user.schema';
 import { objectResponse } from '../utils/util';
@@ -24,4 +24,13 @@ export class UserController {
         return await this._userS.get().then(resp => objectResponse(resp))
     }
 
+    @Get(':id')
+    async getById(@Param('id') id:string) {
+        return await this._userS.getById(id);
+    }
+
+    @Delete(':id')
+    async remove(@Param('id') id:string) {
+        return await this._userS.remove(id)
+    }
 }
