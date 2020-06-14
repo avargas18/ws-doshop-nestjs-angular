@@ -1,8 +1,10 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
+import * as mongoose from 'mongoose';
 
 @Schema()
 export class User extends Document {
+    
     @Prop({required: true})
     name: string;
 
@@ -25,7 +27,7 @@ export class User extends Document {
     create_at: Date;
 
     @Prop()
-    modified_by: Object
+    modified_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 
     @Prop()
     modified_at: Date;

@@ -3,7 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../schemas/user.schema';
 import { objectResponse } from '../utils/util';
 
-@Controller('users')
+@Controller('user')
 export class UserController {
 
     constructor(private readonly _userS: UserService) {}

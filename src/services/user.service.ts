@@ -15,8 +15,8 @@ export class UserService {
             let params: any = []
             user.create_by = 'system'
             user.create_at = new Date()
-            const createUser = new this.userModel(user)
-            createUser.save((err, oUser) => {
+            let objUser = new this.userModel(user)
+            objUser.save((err, oUser) => {
                 if (err) {
                     params[0] = messages.mstrSaveError.code
                     params[1] = ResponseCode.error
@@ -37,10 +37,9 @@ export class UserService {
     async edit(user: User): Promise<User> {
         const promise = new Promise<User>((resolve, reject) => {
             let params: any = []
-            user.modified_by = 'system'
             user.modified_at = new Date()
-            const editUser = new this.userModel(user)
-            editUser.updateOne(user, (err, success) => {
+            let objUser = new this.userModel(user)
+            objUser.updateOne(user, (err, success) => {
                 if (err) {
                     params[0] = messages.mstrUpdateError.code
                     params[1] = ResponseCode.error
