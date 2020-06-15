@@ -82,20 +82,35 @@ export class UserService {
 
     async getById(id:string){
            
+        let params: any = []
         try {
-            const user = await this.userModel.findById(id)
-            return user
+            const oUsers = await this.userModel.findById(id)
+            params[0] = messages.mstrDataSuccess.code
+            params[1] = ResponseCode.success
+            params[2] = messages.mstrDataSuccess.message
+            params[3] = oUsers
+            return params
+                        
         } catch (error) {
-            return {message: error}
+            params[0] = messages.mstrDataError.code
+            params[1] = ResponseCode.error
+            params[2] = `${messages.mstrDataError.message} ${error}`
+            return params
         }
     }
     async remove(id:string){
-           
+        let params: any = []
         try {
-             await this.userModel.deleteOne({'_id': id})
-            return {message: `Usuario con el id ${id} eliminado correctamente`}
+            await this.userModel.deleteOne({'_id': id})
+            params[0] = messages.mstrDeleteSuccess.code,
+            params[1] = ResponseCode.success,
+            params[2] = messages.mstrDeleteSuccess.message
+            return params
         } catch (error) {
-            return {message: error}
+            params[0] = messages.mstrDeleteError.code,
+            params[1] = ResponseCode.error,
+            params[2] = `${messages.mstrDeleteError.message} ${error}`
+            return params
         }
     }
 }
