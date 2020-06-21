@@ -1,7 +1,5 @@
-import { User, UserSchema } from '../schemas/user.schema';
-import { Category, CategorySchema } from '../schemas/category.schema';
-import { StoreSchema, Store } from '../schemas/store.schema';
-import { ProductSchema, Product } from '../schemas/product.schema';
+import { User, Category, Store, Product } from '../schemas/index.schema';
+import { UserSchema, CategorySchema, StoreSchema, ProductSchema } from '../schemas/export-schemas';
 
 // Inject class for MongooseModule.forFeature() in app.module.ts
 export const SCHEMAS = [

@@ -8,6 +8,11 @@ export class UserController {
 
     constructor(private readonly _userS: UserService) {}
 
+    @Get()
+    async get(): Promise<User[]> {
+        return await this._userS.get().then(resp => objectResponse(resp))
+    }
+    
     @Post()
     async add(@Body() user: User) {
         return await this._userS.add(user).then(resp => objectResponse(resp))
@@ -17,11 +22,6 @@ export class UserController {
     async edit(@Param('id') id: string, @Body() user: User) {
         user._id = id
         return await this._userS.edit(user).then(resp => objectResponse(resp))
-    }
-
-    @Get()
-    async get(): Promise<User[]> {
-        return await this._userS.get().then(resp => objectResponse(resp))
     }
 
     @Get(':id')

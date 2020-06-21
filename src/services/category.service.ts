@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Category } from '../schemas/category.schema';
+import { Category } from '../schemas/index.schema';
 import { Model } from 'mongoose';
-import { User } from 'src/schemas/user.schema';
 import * as messages from '../lang/messages.json'
 import { ResponseCode } from '../utils/constant';
 

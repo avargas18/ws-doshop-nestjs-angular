@@ -1,6 +1,7 @@
 import { Document } from 'mongoose';
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
+import { Category, Store, User } from './index.schema';
 
 @Schema()
 export class Product extends Document {
@@ -9,10 +10,10 @@ export class Product extends Document {
     name: string
 
     @Prop()
-    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' }
+    category: { type: mongoose.Schema.Types.ObjectId, ref: Category }
 
     @Prop()
-    store: { type: mongoose.Schema.Types.ObjectId, ref: 'Store' }
+    store: { type: mongoose.Schema.Types.ObjectId, ref: Store }
 
     @Prop({required: true, default: 0})
     stock: number
@@ -30,13 +31,13 @@ export class Product extends Document {
     tags: Array<String>
 
     @Prop()
-    create_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    create_by: { type: mongoose.Schema.Types.ObjectId, ref: User }
 
     @Prop()
     create_at: Date;
 
     @Prop()
-    modified_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    modified_by: { type: mongoose.Schema.Types.ObjectId, ref: User }
 
     @Prop()
     modified_at: Date;

@@ -1,11 +1,9 @@
-import { CategoryController } from './controllers/category.controller';
-import { CategoryService } from './services/category.service';
-import { UserService } from './services/user.service';
-import { UserController } from './controllers/user.controller';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
+import { CategoryController, UserController, StoreController, ProductController } from './controllers/index.controller';
 import { AppService } from './app.service';
+import { CategoryService, UserService, ProductService, StoreService } from './services/index.service';
 import { URI_DB } from './configuration/configuration';
 import { SCHEMAS } from './utils/injectClass';
 
@@ -15,12 +13,16 @@ import { SCHEMAS } from './utils/injectClass';
     MongooseModule.forFeature(SCHEMAS)
   ],
   controllers: [
+    AppController,
     CategoryController,
     UserController,
-    AppController
+    StoreController,
+    ProductController
   ],
   providers: [
     AppService,
+    ProductService, 
+    StoreService, 
     CategoryService,
     UserService
   ],

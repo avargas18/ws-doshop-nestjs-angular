@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../schemas/user.schema';
+import { User } from '../schemas/index.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import * as messages from '../lang/messages.json'
@@ -10,6 +10,29 @@ export class UserService {
 
     constructor(@InjectModel(User.name) private userModel: Model<User>) {}
     
+    async get(): Promise<User[]> {
+        const promise = new Promise<User[]>((resolve, reject) => {
+            let params: any = []
+            this.userModel.find({inactive: false})
+                .populate('')
+                .exec((err, oUsers) => {
+                    if (err) {
+                        params[0] = messages.mstrDataError.code
+                        params[1] = ResponseCode.error
+                        params[2] = `${messages.mstrDataError.message} ${err}`
+                        reject(params)
+                    } else {
+                        params[0] = messages.mstrDataSuccess.code
+                        params[1] = ResponseCode.success
+                        params[2] = messages.mstrDataSuccess.message
+                        params[3] = oUsers
+                        resolve(params)
+                    }
+            })
+        })
+        return promise
+    }
+
     async add(user: User): Promise<User> {
         const promise = new Promise<User>((resolve, reject) => {
             let params: any = []
@@ -57,29 +80,6 @@ export class UserService {
         return promise
     }
 
-    async get(): Promise<User[]> {
-        const promise = new Promise<User[]>((resolve, reject) => {
-            let params: any = []
-            this.userModel.find({inactive: false})
-                .populate('')
-                .exec((err, oUsers) => {
-                    if (err) {
-                        params[0] = messages.mstrDataError.code
-                        params[1] = ResponseCode.error
-                        params[2] = `${messages.mstrDataError.message} ${err}`
-                        reject(params)
-                    } else {
-                        params[0] = messages.mstrDataSuccess.code
-                        params[1] = ResponseCode.success
-                        params[2] = messages.mstrDataSuccess.message
-                        params[3] = oUsers
-                        resolve(params)
-                    }
-            })
-        })
-        return promise
-    }
-
     async getById(id:string){
            
         let params: any = []
@@ -98,6 +98,7 @@ export class UserService {
             return params
         }
     }
+    
     async remove(id:string){
         let params: any = []
         try {
