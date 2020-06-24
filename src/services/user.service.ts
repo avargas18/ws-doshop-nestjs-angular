@@ -80,6 +80,28 @@ export class UserService {
         return promise
     }
 
+    async findEmail(user: User): Promise<User> {
+        const promise = new Promise<User>((resolve, reject) => {
+            let params: any = []
+            // let objUser =  new this.userModel(user)
+            this.userModel.findOne({email: user.email}, (err, oUser) => {
+                if (err) {
+                    params[0] = messages.mstrDataError.code
+                    params[1] = ResponseCode.error
+                    params[2] = `${messages.mstrDataError.message} ${err}`
+                    reject(params)
+                } else {
+                    params[0] = messages.mstrSaveSuccess.code
+                    params[1] = ResponseCode.success
+                    params[2] = messages.mstrSaveSuccess.message
+                    params[3] = oUser
+                    resolve(params)
+                }
+            })
+        })
+        return promise
+    }
+
     async getById(id:string){
            
         let params: any = []
@@ -114,4 +136,22 @@ export class UserService {
             return params
         }
     }
+
+    /*Auth 
+    async login(user: User): Promise<any> {
+        const userD = await this.findEmail(user);
+        if (userD && userD.password) {
+            const payload = { user: user, sub: user._id };
+            const result = {access_token: this.jwtService.sign(payload)}
+            return result;
+        }
+        return null;
+      }*/
+
+    /* async login(user: any) {
+        const payload = { user: user, sub: user._id };
+        return {
+          access_token: this.jwtService.sign(payload)
+        };
+      } */
 }
